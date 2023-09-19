@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dfda9dd4-985c-4b89-a33c-20a1a6baaff6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PizzeberusSpringCloud/config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PizzeberusSpringCloud/config-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PizzeberusSpringCloud/config-server/src/main/java/com/hiberus/ApplicationConfigServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/PizzeberusSpringCloud/config-server/src/main/java/com/hiberus/ApplicationConfigServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PizzeberusSpringCloud/config-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/PizzeberusSpringCloud/config-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PizzeberusSpringCloud/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/PizzeberusSpringCloud/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PizzeberusSpringCloud/pizza-read/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/PizzeberusSpringCloud/pizza-read/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PizzeberusSpringCloud/pizza-write/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/PizzeberusSpringCloud/pizza-write/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PizzeberusSpringCloud/users/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PizzeberusSpringCloud/users/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PizzeberusSpringCloud/users/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/PizzeberusSpringCloud/users/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

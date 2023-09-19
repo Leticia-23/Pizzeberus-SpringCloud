@@ -1,6 +1,7 @@
+# application.yml configuration for Config Server CLIENT
 spring:
   application:
-    name: prendas
+    name: pizzaWrite
   cloud:
     config:
       uri: http://localhost:8888

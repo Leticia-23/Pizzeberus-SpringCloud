@@ -1,6 +1,7 @@
+# application.yml configuration for Config Server CLIENT
 spring:
   application:
-    name: usuarios
+    name: users
   cloud:
     config:
       uri: http://localhost:8888
