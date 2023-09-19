@@ -2,7 +2,7 @@
 # .idea/
 
 # Directorio de compilación de Maven
-target/
+**/target/
 
 # Directorio de dependencias de Maven
 lib/
