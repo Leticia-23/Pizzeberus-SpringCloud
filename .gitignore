@@ -1,5 +1,5 @@
 # Archivos de configuración de IntelliJ IDEA
-.idea/
+# .idea/
 
 # Directorio de compilación de Maven
 target/
