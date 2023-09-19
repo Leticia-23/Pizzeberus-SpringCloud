@@ -1,0 +1,11 @@
+com\hiberus\config\ConfigData.class
+com\hiberus\services\Impl\UserServiceImpl.class
+com\hiberus\repositories\UserRepository.class
+com\hiberus\controlers\UserControler.class
+com\hiberus\models\User$UserBuilder.class
+com\hiberus\UserApplication.class
+com\hiberus\config\ConfigSwagger.class
+com\hiberus\dto\UserDto$UserDtoBuilder.class
+com\hiberus\services\UserService.class
+com\hiberus\models\User.class
+com\hiberus\dto\UserDto.class

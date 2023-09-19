@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3.7.6-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - "TZ=@timezone@"
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  zipkin:
+    image: openzipkin/zipkin:2.23.0
+    container_name: zipkin
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - "9411:9411"
+    environment:
+      - "TZ=@timezone@"
+      - "RABBIT_URI=amqp://guest:guest@rabbitmq:5672"
+
+  pricer_db:
+    image: postgres
+    container_name: "pizzeberus_db"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTRES_PASSWORD: admin123
+      POSTGRES_DB: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  volumes:
+    db-data:
