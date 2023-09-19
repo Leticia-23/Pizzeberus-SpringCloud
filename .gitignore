@@ -1,0 +1,29 @@
+# Archivos de configuración de IntelliJ IDEA
+.idea/
+
+# Directorio de compilación de Maven
+target/
+
+# Directorio de dependencias de Maven
+lib/
+
+# Archivos de registro generados por Spring Boot
+logs/
+
+# Configuración de Spring Boot
+application.properties
+application.yml
+
+# Archivo de propiedades de IntelliJ IDEA
+*.iml
+
+# Directorio de construcción de Gradle
+build/
+
+# Archivos generados por el IDE Eclipse (si alguna vez trabajas con él)
+.classpath
+.project
+.settings/
+
+# Directorio de generación de Eclipse
+bin/
