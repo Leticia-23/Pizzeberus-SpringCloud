@@ -1,7 +1,7 @@
 # application.yml configuration for Config Server CLIENT
 spring:
   application:
-    name: pizzaRead # same name that config server have for the yml file
+    name: pizzaRead # same name that config/gateway server have for the yml file
   cloud:
     config:
       uri: http://localhost:8888  # Where config server is deployed

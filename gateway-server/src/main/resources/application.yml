@@ -6,11 +6,15 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: micro-usuarios
-          uri: lb://usuarios
+        - id: micro-users
+          uri: lb://users # same name that application name of the microservice in its file.yml
           predicates:
-            - Path=/usuarios/**
-        - id: micro-prendas
-          uri: lb://prendas
+            - Path=/users/**
+        - id: micro-pizzaRead
+          uri: lb://pizzaRead
           predicates:
-            - Path=/prendas/**
+            - Path=/pizzaRead/**
+        - id: micro-pizzaWrite
+          uri: lb://pizzaWrite
+          predicates:
+            - Path=/pizzaWrite/**
