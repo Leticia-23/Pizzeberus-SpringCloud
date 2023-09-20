@@ -23,21 +23,24 @@
              <artifactId>spring-boot-starter-web</artifactId>
          </dependency> -->
 
-        <!-- Dependencie for config server CLIENT in pom.xml -->
+        <!-- Dependency for config server CLIENT in pom.xml -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
             <version>3.1.4</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <!-- Dependencie for config server CLIENT in pom.xml -->
+        <!-- Dependency for config server CLIENT in pom.xml -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -60,7 +63,7 @@
         </dependency>
     </dependencies>
 
-    <!-- Dependencie for config server CLIENT in pom.xml -->
+    <!-- Dependency for config server CLIENT in pom.xml -->
     <dependencyManagement>
         <dependencies>
             <dependency>

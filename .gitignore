@@ -11,8 +11,8 @@ lib/
 logs/
 
 # Configuración de Spring Boot
-application.properties
-application.yml
+# application.properties
+# application.yml
 
 # Archivo de propiedades de IntelliJ IDEA
 *.iml

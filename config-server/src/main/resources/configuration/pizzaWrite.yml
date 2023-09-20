@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
 
 eureka:
   client:
@@ -28,7 +28,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
