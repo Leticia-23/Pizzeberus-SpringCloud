@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  rabbitmq:
+  rabbitmq: # Service for observavbility with Sleuth + Zipkin
     image: rabbitmq:3.7.6-management
     container_name: rabbitmq
     ports:
@@ -16,7 +16,7 @@ services:
       timeout: 5s
       retries: 10
 
-  zipkin:
+  zipkin: # Service for observavbility with Sleuth + Zipkin
     image: openzipkin/zipkin:2.23.0
     container_name: zipkin
     depends_on:

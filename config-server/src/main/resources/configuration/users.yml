@@ -33,6 +33,7 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+# Configuration to use circuit breaker
 resilience4j:
   circuitbreaker:
     configs:

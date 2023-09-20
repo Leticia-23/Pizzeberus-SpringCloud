@@ -23,7 +23,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        <!--Dependency and the annotation in the main so that the gateway server knows how to go to Eureka-->
+        <!--Dependency so that the gateway server knows how to go to Eureka-->
         <!-- Not necessary to specify anything else because not need to give it a custom name and Eureka is on the default port -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

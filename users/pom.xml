@@ -38,15 +38,17 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-
+        <!-- Dependency for feign client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <!-- Dependency for circuit breaker -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
-        </dependency>
+        </dependency><!-- Start Dependencies for oberservability for sleuth + rabbitmq + zipkin -->
+
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
@@ -59,6 +61,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
+        <!-- End Dependencies for oberservability for sleuth + rabbitmq + zipkin -->
     </dependencies>
 
     <!-- Dependency for config server CLIENT in pom.xml -->
