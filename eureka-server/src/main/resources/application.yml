@@ -5,6 +5,7 @@ server:
   port: 8761
 eureka:
   client:
+    # Don`t register it self
     registerWithEureka: false
     fetchRegistry: false
     service-url:

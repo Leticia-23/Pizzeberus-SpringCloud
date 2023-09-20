@@ -19,6 +19,7 @@
 
     <dependencies>
 
+        <!-- Start Dependencies for eureka server-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
@@ -47,6 +48,8 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <!-- End Dependencies for eureka server-->
+
     <build>
         <plugins>
             <plugin>
