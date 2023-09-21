@@ -1,22 +1,23 @@
-# Proyecto Spring Cloud con Sleuth y Zipkin
-Proyecto con Sleuth y Zipkin implementado.
+# Pizzeberus
+Spring Cloud project for Microservices Hiberus University
 
-# Guía de uso
-1. ```git clone http://gitlab.hiberus.com/moodle/introSpringCloud-SleuthZipkin.git```.
-2. ``mvn clean install`` para instalar las dependencias del proyecto.
-3. ``docker-compose up --build`` para levantar Rabbitmq y Zipkin.
-4. Arrancar desde el IDE el servicio Config Server.
-5. Arrancar desde el IDE el servicio Eureka Server.
-6. Arrancar desde el IDE el servicio Gateway Server.
-7. Arrancar desde el IDE los servicios Usuarios y Prendas.
+# Usage guide
+1. ```git clone https://github.com/Leticia-23/Pizzeberus-SpringCloud.git```
+2. ``mvn clean install`` to install the project dependencies
+3. ``docker-compose up --build`` to get Rabbitmq, Zipkin and PostreSQL up
+4. Execute Config Server service
+5. Execute Eureka Server service
+6. Execute Gateway Server service
+7. Execute Users, PizzaRead and PizzaWrite services
 
 
-# Documentación
-- Config server: http://localhost:8888/<nombre_servicio>/default
+# Documentation
+- Config server: http://localhost:8888/<service_name>/default
 - Eureka server: http://localhost:8761/
 - Gateway: http://localhost:9000/
-- Usuarios: http://localhost:8080/swagger-ui.html
-- Prendas: http://localhost:8081/swagger-ui.html
+- Users: http://localhost:8080/swagger-ui.html
+- PizzaRead: http://localhost:8081/swagger-ui.html
+- PizzaWrite: http://localhost:8082/swagger-ui.html
 
-# Autor
-Jorge Mora Campoy
+# Autora
+Leticia Sánchez Romero
