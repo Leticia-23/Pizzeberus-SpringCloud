@@ -62,6 +62,13 @@
             <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
         <!-- End Dependencies for oberservability for sleuth + rabbitmq + zipkin -->
+
+        <!-- PostgreSQL JDBC Driver -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.24</version> <!-- Use the recommended version -->
+        </dependency>
     </dependencies>
 
     <!-- Dependency for config server CLIENT in pom.xml -->

@@ -15,9 +15,11 @@ Spring Cloud project for Microservices Hiberus University
 - Config server: http://localhost:8888/<service_name>/default
 - Eureka server: http://localhost:8761/
 - Gateway: http://localhost:9000/
+- Zipkin:  http://127.0.0.1:9411/
 - Users: http://localhost:8080/swagger-ui.html
 - PizzaRead: http://localhost:8081/swagger-ui.html
 - PizzaWrite: http://localhost:8082/swagger-ui.html
+
 
 # Software Arquitecture
 ![image info](./softArq.png)

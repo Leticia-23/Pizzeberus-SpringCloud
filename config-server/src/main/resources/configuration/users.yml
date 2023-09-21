@@ -22,7 +22,7 @@ spring:
     console:
       enabled: true
   datasource:
-    url: jdbc:postgresql://pricer_db:5432/pizzeberusDB
+    url: jdbc:postgresql://localhost:5432/pizzeberusDB
     username: postgres
     password: admin123
   jpa:
