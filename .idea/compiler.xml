@@ -9,8 +9,8 @@
         <module name="pizza-write" />
         <module name="config-server" />
         <module name="gateway-server" />
-        <module name="users-crud" />
         <module name="pizza-read" />
+        <module name="user-crud" />
         <module name="eureka-server" />
       </profile>
     </annotationProcessing>
@@ -22,7 +22,7 @@
       <module name="gateway-server" options="-parameters" />
       <module name="pizza-read" options="-parameters" />
       <module name="pizza-write" options="-parameters" />
-      <module name="users-crud" options="-parameters" />
+      <module name="user-crud" options="-parameters" />
     </option>
   </component>
 </project>

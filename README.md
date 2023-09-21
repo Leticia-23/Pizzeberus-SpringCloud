@@ -19,5 +19,8 @@ Spring Cloud project for Microservices Hiberus University
 - PizzaRead: http://localhost:8081/swagger-ui.html
 - PizzaWrite: http://localhost:8082/swagger-ui.html
 
+# Software Arquitecture
+![image info](./softArq.png)
+
 # Autora
 Leticia Sánchez Romero

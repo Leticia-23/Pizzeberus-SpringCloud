@@ -1,4 +1,4 @@
-package com.hiberus.services.Impl;
+package com.hiberus.services.impl;
 
 import com.hiberus.models.User;
 import com.hiberus.repositories.UserRepository;
