@@ -1,5 +1,6 @@
 package com.hiberus.services.impl;
 
+import com.hiberus.exceptions.UserAlreadyExistsException;
 import com.hiberus.models.User;
 import com.hiberus.repositories.UserRepository;
 import com.hiberus.services.UserService;
@@ -11,8 +12,15 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
      @Autowired
-     UserRepository repositorioUsuario;
+     UserRepository userRepository;
+
+    public void saveUser(User user) throws UserAlreadyExistsException {
+        if (userRepository.existsById(user.getDni())) {
+            throw new UserAlreadyExistsException();
+        }
+        userRepository.save(user);
+    }
     public List<User> getUsers(){
-        return repositorioUsuario.findAll();
+        return userRepository.findAll();
     }
 }

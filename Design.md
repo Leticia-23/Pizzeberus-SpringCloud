@@ -58,3 +58,7 @@
 # Ampliación API
 - Get user 
 - Delete pizza -> habría que utilizar feign client para eliminar luego esa pizza de las favortias de los usuarios que la tuvieran
+
+
+# Notas
+- Notación @Data incluye varias anotaciones como @Getter y @Setter 

@@ -1,15 +1,11 @@
 package com.hiberus.dto;
 
-import lombok.*;
+import lombok.Data;
+import java.util.List;
 
-@Builder
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class UserDto {
-    private Integer id;
-    private String nombre;
-    private String apellidos;
-    private String email;
+    private String dni;
+    private String name;
+    private List<Integer> favPizzas;
 }
