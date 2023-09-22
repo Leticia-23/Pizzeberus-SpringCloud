@@ -6,6 +6,7 @@ import com.hiberus.models.User;
 
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 
@@ -16,5 +17,5 @@ public interface UserService {
 
     void updateUser(String dni, User user) throws UserNotFoundException;
 
-    void deleteUser(String dni);
+    void deleteUser(String dni) throws UserNotFoundException;
 }

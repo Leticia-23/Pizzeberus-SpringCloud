@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,7 +27,7 @@ public class UserControler {
     public ResponseEntity<UserDto> saveUser(@RequestBody UserDto user){
         try {
             userService.saveUser(userMapper.dtoToUser(user));
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         }
         catch (UserAlreadyExistsException e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -56,11 +55,11 @@ public class UserControler {
         }
     }
 
-    @PutMapping(value = "/{dni}")
+    @PatchMapping(value = "/{dni}")
     public ResponseEntity<UserDto> updateUser(@PathVariable String dni, @RequestBody UserDto user){
         try {
             userService.updateUser(dni, userMapper.dtoToUser(user));
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (UserNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -69,8 +68,13 @@ public class UserControler {
 
     @DeleteMapping(value = "/{dni}")
     public ResponseEntity<UserDto> deleteUser(@PathVariable String dni){
-        userService.deleteUser(dni);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        try {
+            userService.deleteUser(dni);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        catch (UserNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }
