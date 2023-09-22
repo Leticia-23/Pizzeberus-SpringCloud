@@ -12,7 +12,7 @@
 
 # API Users Microservice
 
--[x]  Create user
+-[x] Create user
 -[x] Modify user
 -[x] Delete user
 -[x] List users
@@ -47,7 +47,7 @@
 - Cuando se marcan las pizzas como favoritas para ver si realmente existe esa pizza.
 
 # Circuit Braker
-- Listar usuarios devolver vacío si no está el micro de users-crud activo
+- Listar usuarios devolver vacío si no está el micro de users-crud activo → esto no es posible porque si no está activo ni siquiera se va a poder hacer la petición ¿?
 
 # Ideas
 
@@ -57,15 +57,17 @@
 
 # Ampliación API
 - [x] Get user 
-- Delete pizza → habría que utilizar feign client para eliminar luego esa pizza de las favortias de los usuarios que la tuvieran
+- Delete pizza → habría que utilizar feign client para eliminar luego esa pizza de las favortas de los usuarios que la tuvieran
 
 
-# Notas
+# Notas + TODO
 - Notación @Data incluye varias anotaciones como @Getter y @Setter 
 
-- Tendré que poner también lo de la BBDD en pom y yml de los pizza micros
+- [x] Poner dependencias y configuraciones BBDD en pom y yml de los 2 pizza micros y user micro
 
-- Meter las dependencias de mapper en los micros de pizzas
+- [x] Meter las dependencias de mapper en los 2 micros de pizzas y user micro
+
+- [ ] Configurar textos swagger
 
 ## Dudas opciones
 ### Update de datos parcialmente
