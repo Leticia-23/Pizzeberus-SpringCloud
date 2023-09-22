@@ -64,3 +64,5 @@
 - Notación @Data incluye varias anotaciones como @Getter y @Setter 
 
 - Tendré que poner también lo de la BBDD en pom y yml de los pizza micros
+
+- Meter las dependencias de mapper en los micros de pizzas

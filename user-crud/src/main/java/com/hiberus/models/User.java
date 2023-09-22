@@ -7,7 +7,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Table(name = "clients")
 @Entity
 @Getter
 public class User {
@@ -18,6 +18,7 @@ public class User {
     @Setter
     @Column(name = "name")
     private String name;
+    @Setter
     @Column(name = "favPizzas")
     @ElementCollection  // Declare and persist the list
     private List<Integer> favPizzas;
