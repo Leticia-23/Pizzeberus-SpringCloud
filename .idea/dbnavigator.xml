@@ -12,7 +12,7 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="613af7d3-fcf8-4db8-abaa-e315e19a72af">
+    <connection id="e7e91292-80cd-4636-ae7f-29fb62416535">
       <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
@@ -20,15 +20,34 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="e7e91292-80cd-4636-ae7f-29fb62416535" object-ref="schemas/public/tables/user_fav_pizzas" />
+      <object connection-id="e7e91292-80cd-4636-ae7f-29fb62416535" object-ref="schemas/public/tables/users" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="613af7d3-fcf8-4db8-abaa-e315e19a72af" dataset="public.users" active-filter-id="47c34cc6-1e62-4d36-9af5-f4f22a3086a7">
-      <filter id="47c34cc6-1e62-4d36-9af5-f4f22a3086a7" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+    <filter-actions connection-id="e7e91292-80cd-4636-ae7f-29fb62416535" dataset="public.users" active-filter-id="EMPTY_FILTER">
+      <filter id="44a293ce-4f00-4c99-8521-1ce643844fa9" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="dni" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
-    <filter-actions connection-id="613af7d3-fcf8-4db8-abaa-e315e19a72af" dataset="public.user_fav_pizzas" active-filter-id="" />
+    <filter-actions connection-id="e7e91292-80cd-4636-ae7f-29fb62416535" dataset="public.user_fav_pizzas" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="e7e91292-80cd-4636-ae7f-29fb62416535" dataset="public.clients" active-filter-id="">
+      <filter id="ac82c842-6e12-4db5-bd65-9a312ec7f9a1" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="dni" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.MethodExecutionManager">
+    <method-browser />
+    <execution-history>
+      <group-entries value="true" />
+      <execution-inputs />
+    </execution-history>
+    <argument-values-cache />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -36,9 +55,9 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="613af7d3-fcf8-4db8-abaa-e315e19a72af" active="true" signed="true">
+      <connection id="e7e91292-80cd-4636-ae7f-29fb62416535" active="true" signed="true">
         <database>
-          <name value="Connection" />
+          <name value="PizzeberusDB" />
           <description value="" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
