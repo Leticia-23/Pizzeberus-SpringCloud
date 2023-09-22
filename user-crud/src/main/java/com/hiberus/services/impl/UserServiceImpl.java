@@ -34,12 +34,26 @@ public class UserServiceImpl implements UserService {
             throw new UserNotFoundException();
         }
 
+        // TODO: this is not working well
+        //If try update fav pizzas, it will not be possible
         User oldUser = findUser(dni);
         List<Integer> pizzas = oldUser.getFavPizzas();
         user.setFavPizzas(pizzas);
         userRepository.save(user);
     }
+
+   /* public void updateUser(String dni, String name) throws UserNotFoundException {
+        if (!userRepository.existsById(dni)) {
+            throw new UserNotFoundException();
+        }
+
+        User oldUser = findUser(dni);
+        // TODO: correct this put name as json body
+        oldUser.setName(name);
+        userRepository.save(oldUser);
+    }*/
     public void deleteUser(String dni) {
+        // TODO: hacer alguna comprobación si no existe para indicar que no se está elimiando ?
         if (userRepository.existsById(dni)) {
             userRepository.deleteById(dni);
         }
