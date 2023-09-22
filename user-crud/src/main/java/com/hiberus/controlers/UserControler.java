@@ -2,16 +2,14 @@ package com.hiberus.controlers;
 
 import com.hiberus.dto.UserDto;
 import com.hiberus.exceptions.UserAlreadyExistsException;
+import com.hiberus.exceptions.UserNotFoundException;
 import com.hiberus.mappers.UserMapper;
 import com.hiberus.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,5 +35,42 @@ public class UserControler {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<List<UserDto>> getUsers(){
+        List<UserDto> list = userService.findUsers()
+                .stream()
+                .map(user -> userMapper.modelToDto(user))
+                .toList();
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{dni}")
+    public ResponseEntity<UserDto> getUserByDni(@PathVariable String dni){
+        try {
+            UserDto user = userMapper.modelToDto(userService.findUser(dni));
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }
+        catch (UserNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping(value = "/{dni}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable String dni, @RequestBody UserDto user){
+        try {
+            userService.updateUser(dni, userMapper.dtoToUser(user));
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }
+        catch (UserNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping(value = "/{dni}")
+    public ResponseEntity<UserDto> deleteUser(@PathVariable String dni){
+        userService.deleteUser(dni);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }
