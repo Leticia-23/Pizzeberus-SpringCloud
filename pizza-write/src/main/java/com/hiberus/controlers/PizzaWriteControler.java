@@ -1,58 +1,49 @@
 package com.hiberus.controlers;
 
 import com.hiberus.dto.PizzaDto;
+import com.hiberus.exceptions.PizzaAlreadyExistsException;
+import com.hiberus.exceptions.PizzaNotFoundException;
+import com.hiberus.mappers.PizzaMapper;
 import com.hiberus.models.Pizza;
-import com.hiberus.services.PizzaReadService;
+import com.hiberus.services.PizzaWriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/prendas")
+@RequestMapping(value = "/pizzaWrite")
 public class PizzaWriteControler {
 
     @Autowired
-    PizzaReadService pizzaReadService;
+    PizzaWriteService pizzaWriteService;
 
-    @GetMapping(value = "/obtenerPrendas")
-    ResponseEntity<List<PizzaDto>> obtenerPrendas(){
-        List<Pizza> listaPizzas = pizzaReadService.obtenerPrendas();
-        List<PizzaDto> listaPrendasDto = new ArrayList<>();
-        for(Pizza pizza : listaPizzas){
-            PizzaDto pizzaDto = PizzaDto.builder()
-                    .id(pizza.getId())
-                    .nombre(pizza.getNombre())
-                    .talla(pizza.getTalla())
-                    .color(pizza.getColor())
-                    .idUsuario(pizza.getIdUsuario())
-                    .build();
-            listaPrendasDto.add(pizzaDto);
+    @Autowired
+    PizzaMapper pizzaMapper;
+
+    @PostMapping
+    public ResponseEntity<PizzaDto> savePizza(@RequestBody PizzaDto pizza){
+        try {
+            pizzaWriteService.savePizza(pizzaMapper.dtoToModel(pizza));
+            return new ResponseEntity<>(HttpStatus.CREATED);
         }
-        return new ResponseEntity<>(listaPrendasDto, HttpStatus.OK);
+        catch (PizzaAlreadyExistsException e) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
 
-    @GetMapping(value = "/obtenerPrendasPorUsuario")
-    ResponseEntity<List<PizzaDto>> obtenerPrendasPorUsuario(@RequestParam Integer idUsuario){
-        List<Pizza> listaPizzas = pizzaReadService.obtenerPrendasPorIdUsuario(idUsuario);
-        List<PizzaDto> listaPrendasDto = new ArrayList<>();
-        for(Pizza pizza : listaPizzas){
-            PizzaDto pizzaDto = PizzaDto.builder()
-                    .id(pizza.getId())
-                    .nombre(pizza.getNombre())
-                    .talla(pizza.getTalla())
-                    .color(pizza.getColor())
-                    .idUsuario(pizza.getIdUsuario())
-                    .build();
-            listaPrendasDto.add(pizzaDto);
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<PizzaDto> updatePizza(@PathVariable Integer id, @RequestBody PizzaDto pizza){
+        try {
+            pizzaWriteService.updatePizza(id, pizzaMapper.dtoToModel(pizza));
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-        return new ResponseEntity<>(listaPrendasDto, HttpStatus.OK);
+        catch (PizzaNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }

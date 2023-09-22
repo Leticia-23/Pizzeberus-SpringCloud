@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "prendas")
+@Table(name = "pizzas")
 @Entity
 @Getter
 public class Pizza {
@@ -17,15 +17,6 @@ public class Pizza {
     @Column(name = "id")
     private Integer id;
     @Setter
-    @Column(name = "nombre")
-    private String nombre;
-    @Setter
-    @Column(name = "talla")
-    private String talla;
-    @Setter
-    @Column(name = "color")
-    private String color;
-    @Column(name = "idUsuario")
-    private Integer idUsuario;
-
+    @Column(name = "name")
+    private String name;
 }

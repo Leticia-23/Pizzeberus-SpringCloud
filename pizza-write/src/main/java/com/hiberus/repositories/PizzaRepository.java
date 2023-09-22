@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface PizzaRepository extends JpaRepository<Pizza,Integer> {
-    List<Pizza> findByIdUsuario(Integer idUsuario);
 }
