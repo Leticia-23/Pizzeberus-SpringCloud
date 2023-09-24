@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Getter
 public class Pizza {
     @Id
+    // TODO: check if INDENTITY works
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;

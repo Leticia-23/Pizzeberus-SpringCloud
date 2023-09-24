@@ -1,5 +1,6 @@
 package com.hiberus.services.impl;
 
+import com.hiberus.exceptions.PizzaNotFoundException;
 import com.hiberus.models.Pizza;
 import com.hiberus.repositories.PizzaRepository;
 import com.hiberus.services.PizzaReadService;
@@ -14,13 +15,11 @@ public class PizzaReadServiceImpl implements PizzaReadService {
     @Autowired
     PizzaRepository pizzaRepository;
 
-    @Override
-    public List<Pizza> obtenerPrendas() {
+    public List<Pizza> findPizzas(){
         return pizzaRepository.findAll();
     }
 
-    @Override
-    public List<Pizza> obtenerPrendasPorIdUsuario(Integer idUsuario) {
-        return pizzaRepository.findByIdUsuario(idUsuario);
+    public Pizza findPizza(Integer id) throws PizzaNotFoundException {
+        return pizzaRepository.findById(id).orElseThrow(PizzaNotFoundException::new);
     }
 }

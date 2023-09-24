@@ -1,15 +1,13 @@
 package com.hiberus.controlers;
 
 import com.hiberus.dto.PizzaDto;
-import com.hiberus.models.Pizza;
+import com.hiberus.exceptions.PizzaNotFoundException;
+import com.hiberus.mappers.PizzaMapper;
 import com.hiberus.services.PizzaReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,38 +19,28 @@ public class PizzaReadControler {
     @Autowired
     PizzaReadService pizzaReadService;
 
-    @GetMapping(value = "/obtenerPrendas")
-    ResponseEntity<List<PizzaDto>> obtenerPrendas(){
-        List<Pizza> listaPizzas = pizzaReadService.obtenerPrendas();
-        List<PizzaDto> listaPrendasDto = new ArrayList<>();
-        for(Pizza pizza : listaPizzas){
-            PizzaDto pizzaDto = PizzaDto.builder()
-                    .id(pizza.getId())
-                    .nombre(pizza.getNombre())
-                    .talla(pizza.getTalla())
-                    .color(pizza.getColor())
-                    .idUsuario(pizza.getIdUsuario())
-                    .build();
-            listaPrendasDto.add(pizzaDto);
-        }
-        return new ResponseEntity<>(listaPrendasDto, HttpStatus.OK);
+    @Autowired
+    PizzaMapper pizzaMapper;
+
+    @GetMapping
+    public ResponseEntity<List<PizzaDto>> getUsers(){
+        List<PizzaDto> list = pizzaReadService.findPizzas()
+                .stream()
+                .map(user -> pizzaMapper.modelToDto(user))
+                .toList();
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/obtenerPrendasPorUsuario")
-    ResponseEntity<List<PizzaDto>> obtenerPrendasPorUsuario(@RequestParam Integer idUsuario){
-        List<Pizza> listaPizzas = pizzaReadService.obtenerPrendasPorIdUsuario(idUsuario);
-        List<PizzaDto> listaPrendasDto = new ArrayList<>();
-        for(Pizza pizza : listaPizzas){
-            PizzaDto pizzaDto = PizzaDto.builder()
-                    .id(pizza.getId())
-                    .nombre(pizza.getNombre())
-                    .talla(pizza.getTalla())
-                    .color(pizza.getColor())
-                    .idUsuario(pizza.getIdUsuario())
-                    .build();
-            listaPrendasDto.add(pizzaDto);
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<PizzaDto> getUserByDni(@PathVariable Integer id){
+        try {
+            PizzaDto user = pizzaMapper.modelToDto(pizzaReadService.findPizza(id));
+            return new ResponseEntity<>(user, HttpStatus.OK);
         }
-        return new ResponseEntity<>(listaPrendasDto, HttpStatus.OK);
+        catch (PizzaNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }
