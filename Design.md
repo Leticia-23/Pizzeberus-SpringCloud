@@ -74,3 +74,12 @@
 - [ ] Hacer PUT y solo modificar en la base de datos realmente lo que se quiere, y se está dando al usuario la opción de poner cualquiera de los datos del ObjectDTO 
 
 - [x] Hacer PATCH poniendo la opción de todo el ObjectDTO y cambiar en base de datos solo lo que se quiera cambiar.
+
+## PROBLEMAS
+- Para hacer post de las pizzas, se supone que se tiene que generar solo el campo id, pero si no se envía en el json un id da error ( The given id must not be null!). Y debería de generarse el valor cuando es null, o cuando se le da algún valor.
+  - Si se envía el json con un id, entonces lo crea, y no lo crea con ese id sino con el que le toque con el @GeneratedValue(strategy = GenerationType.AUTO).
+  - Si luego quieres hacer post de otro y metes un id que ya exista en la bbdd entonces da conflicto, cuando lo debería de crear igualmente siguiendo lo otro
+  - He probado a poner en el Dto el builder, constructores con y sin args y getter y setters por si acaso pero tampoco lo hace.
+
+- Al actualizar los valores de pizza se crean nuevas pizzas en la base de datos aunque se coja la oldPizza y se le cambie el nombre. Esto según chatgp: 
+  - El problema que estás experimentando se debe a que la estrategia de generación de identificadores (@GeneratedValue) está configurada en GenerationType.AUTO, lo que permite que la base de datos decida la estrategia de generación del ID. Dependiendo del sistema de base de datos que estés utilizando, esta estrategia podría estar generando un nuevo ID incluso si se actualiza una entidad existente. Para evitar que se generen nuevos IDs al actualizar una entidad, puedes cambiar la estrategia de generación del ID a GenerationType.IDENTITY, que es la estrategia más comúnmente utilizada cuando deseas que la base de datos maneje la generación de IDs de manera automática y consecutiva.

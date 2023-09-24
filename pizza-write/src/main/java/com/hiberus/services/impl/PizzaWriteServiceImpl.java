@@ -24,11 +24,10 @@ public class PizzaWriteServiceImpl implements PizzaWriteService {
     }
 
     public void updatePizza(Integer id,  Pizza newPizza) throws PizzaNotFoundException {
-        if (!pizzaRepository.existsById(id)) {
-            throw new PizzaNotFoundException();
-        }
 
         Pizza pizza = pizzaRepository.findById(id).orElseThrow(PizzaNotFoundException::new);
+
+        pizza.setName(newPizza.getName());
 
         pizzaRepository.save(pizza);
     }
