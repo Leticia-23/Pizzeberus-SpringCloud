@@ -1,6 +1,6 @@
 package com.hiberus.controlers;
 
-import com.hiberus.dto.PizzaDto;
+import com.hiberus.dto.PizzaWDto;
 import com.hiberus.exceptions.PizzaAlreadyExistsException;
 import com.hiberus.exceptions.PizzaNotFoundException;
 import com.hiberus.mappers.PizzaMapper;
@@ -22,7 +22,7 @@ public class PizzaWriteControler {
     PizzaMapper pizzaMapper;
 
     @PostMapping
-    public ResponseEntity<PizzaDto> savePizza(@RequestBody PizzaDto pizza){
+    public ResponseEntity<PizzaWDto> savePizza(@RequestBody PizzaWDto pizza){
         try {
             pizzaWriteService.savePizza(pizzaMapper.dtoToModel(pizza));
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -33,7 +33,7 @@ public class PizzaWriteControler {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<PizzaDto> updatePizza(@PathVariable Integer id, @RequestBody PizzaDto pizza){
+    public ResponseEntity<PizzaWDto> updatePizza(@PathVariable Integer id, @RequestBody PizzaWDto pizza){
         try {
             pizzaWriteService.updatePizza(id, pizzaMapper.dtoToModel(pizza));
             return new ResponseEntity<>(HttpStatus.OK);
