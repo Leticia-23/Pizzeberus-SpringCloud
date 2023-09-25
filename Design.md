@@ -2,7 +2,7 @@
 
 - [ ] Create pizza
 
-- [ ] Modify pizza
+- [x] Modify pizza
 
 # API Pizza Read Microservice
 

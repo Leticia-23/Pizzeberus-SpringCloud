@@ -6,5 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface PizzaMapper {
-    PizzaDto modelToDto(Pizza user);
+    PizzaDto modelToDto(Pizza pizza);
 }

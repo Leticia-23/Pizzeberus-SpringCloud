@@ -25,9 +25,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/pizzeberusDB
     username: postgres
     password: admin123
+    driverClassName: org.postgresql.Driver
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

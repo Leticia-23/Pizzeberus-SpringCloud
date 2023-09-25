@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,7 +25,7 @@ public class PizzaReadControler {
     public ResponseEntity<List<PizzaDto>> getUsers(){
         List<PizzaDto> list = pizzaReadService.findPizzas()
                 .stream()
-                .map(user -> pizzaMapper.modelToDto(user))
+                .map(pizza -> pizzaMapper.modelToDto(pizza))
                 .toList();
 
         return new ResponseEntity<>(list, HttpStatus.OK);
@@ -35,8 +34,8 @@ public class PizzaReadControler {
     @GetMapping(value = "/{id}")
     public ResponseEntity<PizzaDto> getUserByDni(@PathVariable Integer id){
         try {
-            PizzaDto user = pizzaMapper.modelToDto(pizzaReadService.findPizza(id));
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            PizzaDto pizza = pizzaMapper.modelToDto(pizzaReadService.findPizza(id));
+            return new ResponseEntity<>(pizza, HttpStatus.OK);
         }
         catch (PizzaNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

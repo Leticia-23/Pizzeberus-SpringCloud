@@ -14,7 +14,7 @@ public class Pizza {
     @Id
     // TODO: check if INDENTITY works
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", columnDefinition = "serial")
     private Integer id;
     @Setter
     @Column(name = "name")
