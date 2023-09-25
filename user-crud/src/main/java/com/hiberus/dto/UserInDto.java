@@ -1,11 +1,9 @@
 package com.hiberus.dto;
 
 import lombok.Data;
-import java.util.List;
 
 @Data
-public class UserDto {
+public class UserInDto {
     private String dni;
     private String name;
-    private List<Integer> favPizzas;
 }

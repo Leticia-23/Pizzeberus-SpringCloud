@@ -1,6 +1,7 @@
 package com.hiberus.controlers;
 
 import com.hiberus.dto.UserDto;
+import com.hiberus.dto.UserInDto;
 import com.hiberus.exceptions.UserAlreadyExistsException;
 import com.hiberus.exceptions.UserNotFoundException;
 import com.hiberus.mappers.UserMapper;
@@ -24,7 +25,7 @@ public class UserControler {
     UserMapper userMapper;
 
     @PostMapping
-    public ResponseEntity<UserDto> saveUser(@RequestBody UserDto user){
+    public ResponseEntity<UserDto> saveUser(@RequestBody UserInDto user){
         try {
             userService.saveUser(userMapper.dtoToUser(user));
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -56,7 +57,7 @@ public class UserControler {
     }
 
     @PatchMapping(value = "/{dni}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable String dni, @RequestBody UserDto user){
+    public ResponseEntity<UserDto> updateUser(@PathVariable String dni, @RequestBody UserInDto user){
         try {
             userService.updateUser(dni, userMapper.dtoToUser(user));
             return new ResponseEntity<>(HttpStatus.OK);
@@ -76,5 +77,4 @@ public class UserControler {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }

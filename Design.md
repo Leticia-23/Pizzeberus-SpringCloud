@@ -1,14 +1,14 @@
 # API Pizza Write Microservice
 
-- [ ] Create pizza
+- [x] Create pizza
 
 - [x] Modify pizza
 
 # API Pizza Read Microservice
 
-- [ ] List pizzas
+- [x] List pizzas
 
-- [ ] Get concrete pizza
+- [x] Get concrete pizza
 
 # API Users Microservice
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/prendas")
+@RequestMapping(value = "/pizzaRead")
 public class PizzaReadControler {
 
     @Autowired
@@ -22,7 +22,7 @@ public class PizzaReadControler {
     PizzaMapper pizzaMapper;
 
     @GetMapping
-    public ResponseEntity<List<PizzaDto>> getUsers(){
+    public ResponseEntity<List<PizzaDto>> getPizzas(){
         List<PizzaDto> list = pizzaReadService.findPizzas()
                 .stream()
                 .map(pizza -> pizzaMapper.modelToDto(pizza))
@@ -32,7 +32,7 @@ public class PizzaReadControler {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<PizzaDto> getUserByDni(@PathVariable Integer id){
+    public ResponseEntity<PizzaDto> getPizzaById(@PathVariable Integer id){
         try {
             PizzaDto pizza = pizzaMapper.modelToDto(pizzaReadService.findPizza(id));
             return new ResponseEntity<>(pizza, HttpStatus.OK);

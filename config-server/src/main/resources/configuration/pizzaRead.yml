@@ -16,7 +16,7 @@ spring:
     activate:
       on-profile: default
   application:
-    name: pizzaRead
+    name: pizzaWrite
     zipkin: http://zipkin:9411
   h2:
     console:
@@ -25,7 +25,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/pizzeberusDB
     username: postgres
     password: admin123
-    driverClassName: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update

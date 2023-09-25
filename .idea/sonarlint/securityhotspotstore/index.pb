@@ -6,8 +6,6 @@ Gpizza-write/src/main/java/com/hiberus/repositories/PizzaRepository.java,4\b\4b
 C
 pizza-write/pom.xml,3\6\3619d124aa0d78b01a809efadcc89459fb702290
 g
-7pizza-write/src/main/java/com/hiberus/dto/PizzaDto.java,b\9\b944d8eeb0f4eca8d265a7ab22843381a25f8e32
-g
 7pizza-write/src/main/java/com/hiberus/models/Pizza.java,e\5\e536d0bdb092886159cc0e00508879427b38c0f1
 o
 ?pizza-write/src/main/java/com/hiberus/config/ConfigSwagger.java,d\e\ded3b4d83cf1367610998af75140e5cc655084c2
@@ -81,3 +79,7 @@ n
 Kpizza-read/src/main/java/com/hiberus/exceptions/PizzaNotFoundException.java,4\6\46fbb4444790a91667daa61232088ff0e8acc986
 m
 =pizza-read/src/main/java/com/hiberus/mappers/PizzaMapper.java,a\b\ab36d9d944970ec83889623c8650624e97151fee
+n
+>pizza-read/src/main/java/com/hiberus/PizzaReadApplication.java,3\0\30eb1d824fdcf56b1c6ca09b78cc593b0c6ce48f
+h
+8pizza-write/src/main/java/com/hiberus/dto/PizzaWDto.java,d\2\d28df78904ec950e5dd2788e3cd1bdd3196a05bc
