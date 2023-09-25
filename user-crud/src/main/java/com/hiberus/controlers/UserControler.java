@@ -2,10 +2,12 @@ package com.hiberus.controlers;
 
 import com.hiberus.dto.UserDto;
 import com.hiberus.dto.UserInDto;
+import com.hiberus.exceptions.PizzaNotFoundException;
 import com.hiberus.exceptions.UserAlreadyExistsException;
 import com.hiberus.exceptions.UserNotFoundException;
 import com.hiberus.mappers.UserMapper;
 import com.hiberus.services.UserService;
+import com.hiberus.services.impl.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,9 @@ public class UserControler {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    PizzaService pizzaService;
 
     @PostMapping
     public ResponseEntity<UserDto> saveUser(@RequestBody UserInDto user){
@@ -74,6 +79,18 @@ public class UserControler {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         catch (UserNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // users endpoint that it will call pizzas endpoint
+    @PatchMapping(value = "/checkFavPizza")
+    public ResponseEntity<UserDto> checkFavPizzaForUser(@RequestParam String dni, @RequestParam Integer idPizza){
+        try {
+            UserDto user = pizzaService.checkFavPizzaForUser(dni, idPizza);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }
+        catch (UserNotFoundException | PizzaNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
