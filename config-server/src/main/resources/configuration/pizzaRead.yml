@@ -16,7 +16,7 @@ spring:
     activate:
       on-profile: default
   application:
-    name: pizzaWrite
+    name: pizzaRead
     zipkin: http://zipkin:9411
   h2:
     console:
