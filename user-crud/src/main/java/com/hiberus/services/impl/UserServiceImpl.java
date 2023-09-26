@@ -31,10 +31,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public void updateUser(String dni,  User newUser) throws UserNotFoundException {
-        /*if (!userRepository.existsById(dni)) {
-            throw new UserNotFoundException();
-        }*/
-
         User user = findUser(dni);
 
         // Only update name (pizzas update with check and uncheck as favorites)

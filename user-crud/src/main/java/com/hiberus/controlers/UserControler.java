@@ -1,5 +1,6 @@
 package com.hiberus.controlers;
 
+import com.hiberus.dto.PizzaDto;
 import com.hiberus.dto.UserDto;
 import com.hiberus.dto.UserInDto;
 import com.hiberus.exceptions.PizzaNotFoundException;
@@ -85,10 +86,10 @@ public class UserControler {
 
     // users endpoint that it will call pizzas endpoint
     @PatchMapping(value = "/checkFavPizza")
-    public ResponseEntity<UserDto> checkFavPizzaForUser(@RequestParam String dni, @RequestParam Integer idPizza){
+    public ResponseEntity<PizzaDto> checkFavPizzaForUser(@RequestParam String dni, @RequestParam Integer idPizza){
         try {
-            UserDto user = pizzaService.checkFavPizzaForUser(dni, idPizza);
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            pizzaService.checkFavPizzaForUser(dni, idPizza);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (UserNotFoundException | PizzaNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

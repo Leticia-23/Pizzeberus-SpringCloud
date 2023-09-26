@@ -83,3 +83,13 @@ n
 >pizza-read/src/main/java/com/hiberus/PizzaReadApplication.java,3\0\30eb1d824fdcf56b1c6ca09b78cc593b0c6ce48f
 h
 8pizza-write/src/main/java/com/hiberus/dto/PizzaWDto.java,d\2\d28df78904ec950e5dd2788e3cd1bdd3196a05bc
+f
+6user-crud/src/main/java/com/hiberus/dto/UserInDto.java,3\6\36f660f589c48be2a96f44b397b453c479abc585
+z
+Juser-crud/src/main/java/com/hiberus/exceptions/PizzaNotFoundException.java,d\f\df6ae27c1369f29d9982a9f23c69bc3ff5c790a8
+s
+Cuser-crud/src/main/java/com/hiberus/services/impl/PizzaService.java,a\b\ab6617ddb4635240314e30e528c9809713992f1b
+w
+Guser-crud/src/main/java/com/hiberus/services/impl/PizzaServiceImpl.java,7\f\7f2b6f2a15936e70f4a11e95cb8d2bb7766b464a
+l
+<user-crud/src/main/java/com/hiberus/clients/PizzaClient.java,2\5\258ecd0e21ad21363c120ecfeb19d2699d076bd2

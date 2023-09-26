@@ -1,13 +1,13 @@
 package com.hiberus.clients;
 
-import com.hiberus.dto.UserDto;
+import com.hiberus.dto.PizzaDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "pizzaWrite")
+@FeignClient(name = "pizzaRead")
 public interface PizzaClient {
-        @PatchMapping(value = "/pizzaWrite/checkFavPizza")
-        ResponseEntity<UserDto> checkFavPizzaForUser(@RequestParam String dni, @RequestParam Integer idPizza);
+        @GetMapping(value = "/pizzaRead")
+        ResponseEntity<PizzaDto> checkFavPizzaForUser(@RequestParam Integer idPizza);
 }
