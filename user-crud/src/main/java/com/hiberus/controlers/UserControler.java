@@ -95,4 +95,15 @@ public class UserControler {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PatchMapping(value = "/uncheckFavPizza")
+    public ResponseEntity<PizzaDto> uncheckFavPizzaForUser(@RequestParam String dni, @RequestParam Integer idPizza){
+        try {
+            pizzaService.uncheckFavPizzaForUser(dni, idPizza);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        catch (UserNotFoundException | PizzaNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

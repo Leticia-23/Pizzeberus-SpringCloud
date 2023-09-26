@@ -7,4 +7,6 @@ import com.hiberus.exceptions.UserNotFoundException;
 public interface PizzaService {
 
     void checkFavPizzaForUser(String dni, Integer idPizza) throws UserNotFoundException, PizzaNotFoundException;
+
+    void uncheckFavPizzaForUser(String dni, Integer idPizza) throws UserNotFoundException, PizzaNotFoundException;
 }

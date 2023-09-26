@@ -18,7 +18,7 @@ import org.springframework.http.HttpStatus;
 import java.util.List;
 
 // Este es el servicio que tiene inyectado a través del @AllArgsConstructor al cliente
-@Service("feign-pizzas")
+@Service
 @AllArgsConstructor
 @Slf4j
 public class PizzaServiceImpl implements PizzaService{
@@ -43,7 +43,7 @@ public class PizzaServiceImpl implements PizzaService{
             User user = userRepository.findById(dni).orElseThrow(UserNotFoundException::new);
 
             List<Integer> pizzas = user.getFavPizzas();
-            if (pizza != null) {
+            if (pizza != null && (!pizzas.contains(pizza.getId()))) {
                 pizzas.add(pizza.getId());
                 user.setFavPizzas(pizzas);
             }
@@ -56,5 +56,18 @@ public class PizzaServiceImpl implements PizzaService{
         throw throwable;
 
         // TODO: ¿Qué sería lo más correcto hacer si no se encuentra el servicio de pizzas?
+    }
+
+    public  void uncheckFavPizzaForUser(String dni, Integer idPizza) throws UserNotFoundException, PizzaNotFoundException {
+        User user = userRepository.findById(dni).orElseThrow(UserNotFoundException::new);
+        List<Integer> pizzas = user.getFavPizzas();
+
+        if (pizzas.contains(idPizza)) {
+            pizzas.remove(idPizza);
+            user.setFavPizzas(pizzas);
+        } else {
+            throw new PizzaNotFoundException();
+        }
+        userRepository.save(user);
     }
 }

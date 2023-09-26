@@ -1,5 +1,6 @@
 package com.hiberus.services;
 
+import com.hiberus.exceptions.PizzaNotFoundException;
 import com.hiberus.exceptions.UserAlreadyExistsException;
 import com.hiberus.exceptions.UserNotFoundException;
 import com.hiberus.models.User;

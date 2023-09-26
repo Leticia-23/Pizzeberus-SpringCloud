@@ -1,5 +1,6 @@
 package com.hiberus.services.impl;
 
+import com.hiberus.exceptions.PizzaNotFoundException;
 import com.hiberus.exceptions.UserAlreadyExistsException;
 import com.hiberus.exceptions.UserNotFoundException;
 import com.hiberus.models.User;
@@ -40,7 +41,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public void deleteUser(String dni) throws UserNotFoundException {
-
         if (userRepository.existsById(dni)) {
             userRepository.deleteById(dni);
         } else {
