@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.net.ConnectException;
+import java.net.UnknownHostException;
 import java.util.List;
 
 @Service
@@ -31,11 +32,8 @@ public class PizzaServiceImpl implements PizzaService{
     @CircuitBreaker(name = "pizzaRead",fallbackMethod = "fallBackCheckFavPizza")
     public void checkFavPizzaForUser(String dni, Integer idPizza) throws UserNotFoundException, PizzaNotFoundException, PizzaReadMicroUnailable {
 
-       /* try {*/
             User user = userRepository.findById(dni)
                     .orElseThrow(() -> new UserNotFoundException("User not found"));
-
-            /*ResponseEntity<PizzaDto> responseEntity = checkFavPizza(idPizza);*/
 
             ResponseEntity<PizzaDto> responseEntity  = pizzaClient.checkFavPizza(idPizza);
 
@@ -48,30 +46,31 @@ public class PizzaServiceImpl implements PizzaService{
                 user.setFavPizzas(pizzas);
             }
             userRepository.save(user);
-
-        /*} catch (FeignException.NotFound e) {
-            throw new PizzaNotFoundException("Pizza not found in pizza microservice");
-        }*/
     }
 
-    /*@CircuitBreaker(name = "pizzaRead",fallbackMethod = "fallBackCheckFavPizza")
-    private ResponseEntity<PizzaDto> checkFavPizza(Integer idPizza) {
-        log.info("Va a hacer feign client");
-        return pizzaClient.checkFavPizza(idPizza);
-    }*/
-
-
     private void fallBackCheckFavPizza(String dni, Integer idPizza, Throwable throwable) throws Throwable {
-        log.error("Unhandled exception calling pizza-read microservice: " + throwable.getMessage());
+        log.error("Exception Feign Client: " + throwable.getMessage());
 
-        if (throwable instanceof FeignException.NotFound) {
+        Throwable rootCause = getRootCause(throwable);
+
+        if (rootCause instanceof FeignException.NotFound) {
             throw new PizzaNotFoundException("Pizza not found in pizza microservice");
-        } else if (throwable instanceof ConnectException) {
-            throw new PizzaReadMicroUnailable("pizza-read microservice not up");
+        } else if (rootCause instanceof ConnectException) {
+            throw new PizzaReadMicroUnailable("Not connection with pizza-read microservice");
+        } else if (rootCause instanceof UnknownHostException) {
+            throw new PizzaReadMicroUnailable("pizza-read microservice unknown");
         } else {
             throw throwable;
         }
 
+    }
+
+    private Throwable getRootCause(Throwable throwable) {
+        Throwable rootCause = throwable;
+        while (rootCause.getCause() != null) {
+            rootCause = rootCause.getCause();
+        }
+        return rootCause;
     }
 
     public  void uncheckFavPizzaForUser(String dni, Integer idPizza) throws UserNotFoundException, PizzaNotFoundException {
