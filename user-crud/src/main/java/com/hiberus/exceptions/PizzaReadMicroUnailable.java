@@ -3,8 +3,8 @@ package com.hiberus.exceptions;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class PizzaNotFoundException extends Exception {
-    public PizzaNotFoundException(String message) {
+public class PizzaReadMicroUnailable extends Exception {
+    public PizzaReadMicroUnailable(String message) {
         super(message);
     }
 }

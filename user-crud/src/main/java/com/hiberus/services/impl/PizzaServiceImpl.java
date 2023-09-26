@@ -3,21 +3,21 @@ package com.hiberus.services.impl;
 import com.hiberus.clients.PizzaClient;
 import com.hiberus.dto.PizzaDto;
 import com.hiberus.exceptions.PizzaNotFoundException;
+import com.hiberus.exceptions.PizzaReadMicroUnailable;
 import com.hiberus.exceptions.UserNotFoundException;
 import com.hiberus.models.User;
 import com.hiberus.repositories.UserRepository;
+import feign.FeignException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.http.HttpStatus;
 
-
+import java.net.ConnectException;
 import java.util.List;
 
-// Este es el servicio que tiene inyectado a través del @AllArgsConstructor al cliente
 @Service
 @AllArgsConstructor
 @Slf4j
@@ -28,34 +28,50 @@ public class PizzaServiceImpl implements PizzaService{
 
     private final PizzaClient pizzaClient;
 
-    @CircuitBreaker(name = "pizzaRead",fallbackMethod = "fallBackCheckFavPizzaForUser")
-    @Override
-    public void checkFavPizzaForUser(String dni, Integer idPizza) throws UserNotFoundException, PizzaNotFoundException {
+    @CircuitBreaker(name = "pizzaRead",fallbackMethod = "fallBackCheckFavPizza")
+    public void checkFavPizzaForUser(String dni, Integer idPizza) throws UserNotFoundException, PizzaNotFoundException, PizzaReadMicroUnailable {
 
-        ResponseEntity<PizzaDto> responseEntity = pizzaClient.checkFavPizzaForUser(idPizza);
+       /* try {*/
+            User user = userRepository.findById(dni)
+                    .orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        if (responseEntity.getStatusCode() == HttpStatus.NOT_FOUND) {
-            throw new PizzaNotFoundException();
-        } else {
+            /*ResponseEntity<PizzaDto> responseEntity = checkFavPizza(idPizza);*/
+
+            ResponseEntity<PizzaDto> responseEntity  = pizzaClient.checkFavPizza(idPizza);
+
             PizzaDto pizza = responseEntity.getBody();
 
             // Add pizza as favorite for user
-            User user = userRepository.findById(dni).orElseThrow(UserNotFoundException::new);
-
             List<Integer> pizzas = user.getFavPizzas();
             if (pizza != null && (!pizzas.contains(pizza.getId()))) {
                 pizzas.add(pizza.getId());
                 user.setFavPizzas(pizzas);
             }
             userRepository.save(user);
-        }
+
+        /*} catch (FeignException.NotFound e) {
+            throw new PizzaNotFoundException("Pizza not found in pizza microservice");
+        }*/
     }
 
-    private void fallBackCheckFavPizzaForUser(String dni, Integer idPizza, Throwable throwable) throws Throwable {
-        log.error("Unhandled exception calling pizza-read microservice: " + throwable.getMessage());
-        throw throwable;
+    /*@CircuitBreaker(name = "pizzaRead",fallbackMethod = "fallBackCheckFavPizza")
+    private ResponseEntity<PizzaDto> checkFavPizza(Integer idPizza) {
+        log.info("Va a hacer feign client");
+        return pizzaClient.checkFavPizza(idPizza);
+    }*/
 
-        // TODO: ¿Qué sería lo más correcto hacer si no se encuentra el servicio de pizzas?
+
+    private void fallBackCheckFavPizza(String dni, Integer idPizza, Throwable throwable) throws Throwable {
+        log.error("Unhandled exception calling pizza-read microservice: " + throwable.getMessage());
+
+        if (throwable instanceof FeignException.NotFound) {
+            throw new PizzaNotFoundException("Pizza not found in pizza microservice");
+        } else if (throwable instanceof ConnectException) {
+            throw new PizzaReadMicroUnailable("pizza-read microservice not up");
+        } else {
+            throw throwable;
+        }
+
     }
 
     public  void uncheckFavPizzaForUser(String dni, Integer idPizza) throws UserNotFoundException, PizzaNotFoundException {

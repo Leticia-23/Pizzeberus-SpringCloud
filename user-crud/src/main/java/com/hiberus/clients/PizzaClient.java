@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "pizzaRead")
 public interface PizzaClient {
         @GetMapping(value = "/pizzaRead/{id}")
-        ResponseEntity<PizzaDto> checkFavPizzaForUser(@PathVariable Integer id);
+        ResponseEntity<PizzaDto> checkFavPizza(@PathVariable Integer id);
 }
