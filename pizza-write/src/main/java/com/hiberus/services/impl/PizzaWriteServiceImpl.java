@@ -15,7 +15,7 @@ public class PizzaWriteServiceImpl implements PizzaWriteService {
     @Autowired
     PizzaRepository pizzaRepository;
 
-    public void savePizza(Pizza pizza) throws PizzaAlreadyExistsException {
+    public void savePizza(Pizza pizza)  {
 
         pizzaRepository.save(pizza);
     }

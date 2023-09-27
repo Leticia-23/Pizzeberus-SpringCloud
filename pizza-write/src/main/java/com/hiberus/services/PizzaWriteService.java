@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface PizzaWriteService {
 
-    void savePizza(Pizza pizza) throws PizzaAlreadyExistsException;
+    void savePizza(Pizza pizza);
     void updatePizza(Integer id, Pizza pizza) throws PizzaNotFoundException;
 
 }

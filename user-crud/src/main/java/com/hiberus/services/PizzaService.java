@@ -1,4 +1,4 @@
-package com.hiberus.services.impl;
+package com.hiberus.services;
 
 import com.hiberus.dto.UserDto;
 import com.hiberus.exceptions.PizzaNotFoundException;

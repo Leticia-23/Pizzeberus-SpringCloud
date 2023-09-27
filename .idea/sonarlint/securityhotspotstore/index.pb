@@ -93,3 +93,7 @@ w
 Guser-crud/src/main/java/com/hiberus/services/impl/PizzaServiceImpl.java,7\f\7f2b6f2a15936e70f4a11e95cb8d2bb7766b464a
 l
 <user-crud/src/main/java/com/hiberus/clients/PizzaClient.java,2\5\258ecd0e21ad21363c120ecfeb19d2699d076bd2
+e
+5user-crud/src/main/java/com/hiberus/dto/PizzaDto.java,3\c\3cf841fef7c45ea4d2501a580e56432eebaaca45
+{
+Kuser-crud/src/main/java/com/hiberus/exceptions/PizzaReadMicroUnailable.java,f\b\fb54a50e232df513164f22b02183e19a93fa42f7

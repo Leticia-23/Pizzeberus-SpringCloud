@@ -5,6 +5,9 @@ import com.hiberus.exceptions.PizzaAlreadyExistsException;
 import com.hiberus.exceptions.PizzaNotFoundException;
 import com.hiberus.mappers.PizzaMapper;
 import com.hiberus.services.PizzaWriteService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,17 +24,23 @@ public class PizzaWriteControler {
     @Autowired
     PizzaMapper pizzaMapper;
 
+    @ApiOperation(value = "Create pizza")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Pizza created successfully"),
+    })
     @PostMapping
     public ResponseEntity<PizzaWDto> savePizza(@RequestBody PizzaWDto pizza){
-        try {
-            pizzaWriteService.savePizza(pizzaMapper.dtoToModel(pizza));
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }
-        catch (PizzaAlreadyExistsException e) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
+
+        pizzaWriteService.savePizza(pizzaMapper.dtoToModel(pizza));
+        return new ResponseEntity<>(HttpStatus.CREATED);
+
     }
 
+    @ApiOperation(value = "Update pizza")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Pizza successfully updated"),
+            @ApiResponse(code = 404, message = "Pizza not found"),
+    })
     @PutMapping(value = "/{id}")
     public ResponseEntity<PizzaWDto> updatePizza(@PathVariable Integer id, @RequestBody PizzaWDto pizza){
         try {
@@ -42,5 +51,4 @@ public class PizzaWriteControler {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }

@@ -7,6 +7,7 @@ import com.hiberus.exceptions.PizzaReadMicroUnailable;
 import com.hiberus.exceptions.UserNotFoundException;
 import com.hiberus.models.User;
 import com.hiberus.repositories.UserRepository;
+import com.hiberus.services.PizzaService;
 import feign.FeignException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class PizzaServiceImpl implements PizzaService{
+public class PizzaServiceImpl implements PizzaService {
 
     @Autowired
     UserRepository userRepository;
@@ -74,14 +75,15 @@ public class PizzaServiceImpl implements PizzaService{
     }
 
     public  void uncheckFavPizzaForUser(String dni, Integer idPizza) throws UserNotFoundException, PizzaNotFoundException {
-        User user = userRepository.findById(dni).orElseThrow(UserNotFoundException::new);
+        User user = userRepository.findById(dni)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
         List<Integer> pizzas = user.getFavPizzas();
 
         if (pizzas.contains(idPizza)) {
             pizzas.remove(idPizza);
             user.setFavPizzas(pizzas);
         } else {
-            throw new PizzaNotFoundException();
+            throw new PizzaNotFoundException("Pizza not found");
         }
         userRepository.save(user);
     }
